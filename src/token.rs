@@ -7,6 +7,11 @@ lazy_static!{
         let mut m = HashMap::new();
         m.insert("fn".into(), TokenType::FUNCTION);
         m.insert("let".into(), TokenType::LET);
+        m.insert("true".into(), TokenType::TRUE);
+        m.insert("false".into(), TokenType::FALSE);
+        m.insert("if".into(), TokenType::IF);
+        m.insert("else".into(), TokenType::ELSE);
+        m.insert("return".into(), TokenType::RETURN);
         m
     };
 }
@@ -42,6 +47,13 @@ pub(crate) enum TokenType {
     LBRACE,
     FUNCTION,
     LET,
+    TRUE,
+    FALSE,
+    IF,
+    ELSE,
+    RETURN,
+    EQ,
+    NOT_EQ
 }
 
 impl Display for TokenType {
@@ -68,6 +80,13 @@ impl Display for TokenType {
             LBRACE => write!(f, "LBRACE"),
             FUNCTION => write!(f, "FUNCTION"),
             LET => write!(f, "LET"),
+            IF => write!(f, "IF"),
+            FALSE => write!(f, "FALSE"),
+            TRUE => write!(f, "TRUE"),
+            ELSE => write!(f, "ELSE"),
+            RETURN => write!(f, "RETURN"),
+            EQ => write!(f, "EQ"),
+            NOT_EQ => write!(f, "NOT_EQ"),
         }
     }
 }
