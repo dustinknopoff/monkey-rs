@@ -44,6 +44,12 @@ impl Lexer {
 			b'}' => tok = Token::new(TokenType::RBRACE, "}"),
 			b',' => tok = Token::new(TokenType::COMMA, ","),
 			b'+' => tok = Token::new(TokenType::PLUS, "+"),
+			b'-' => tok = Token::new(TokenType::MINUS, "-"),
+			b'*' => tok = Token::new(TokenType::ASTERISK, "*"),
+			b'/' => tok = Token::new(TokenType::SLASH, "/"),
+			b'!' => tok = Token::new(TokenType::BANG, "!"),
+			b'<' => tok = Token::new(TokenType::LT, "<"),
+			b'>' => tok = Token::new(TokenType::GT, ">"),
 			0 => {}
 			b'a'..=b'z' | b'A'..=b'Z' | b'_' => {
 				tok.literal = self.read_identifier();
@@ -131,6 +137,8 @@ let add = fn(x, y) {
 };
 
 let result = add(five, ten);
+!-/*5;
+5 < 10 > 5;
 "#;
 		let tests = vec![
 			ExpectedToken::new(TokenType::LET, "let"),
@@ -168,6 +176,18 @@ let result = add(five, ten);
 			ExpectedToken::new(TokenType::COMMA, ","),
 			ExpectedToken::new(TokenType::IDENT, "ten"),
 			ExpectedToken::new(TokenType::RPAREN, ")"),
+			ExpectedToken::new(TokenType::SEMICOLON, ";"),
+			ExpectedToken::new(TokenType::BANG, "!"),
+			ExpectedToken::new(TokenType::MINUS, "-"),
+			ExpectedToken::new(TokenType::SLASH, "/"),
+			ExpectedToken::new(TokenType::ASTERISK, "*"),
+			ExpectedToken::new(TokenType::INT, "5"),
+			ExpectedToken::new(TokenType::SEMICOLON, ";"),
+			ExpectedToken::new(TokenType::INT, "5"),
+			ExpectedToken::new(TokenType::LT, "<"),
+			ExpectedToken::new(TokenType::INT, "10"),
+			ExpectedToken::new(TokenType::GT, ">"),
+			ExpectedToken::new(TokenType::INT, "5"),
 			ExpectedToken::new(TokenType::SEMICOLON, ";"),
 			ExpectedToken::new(TokenType::EOF, ""),
 		];
