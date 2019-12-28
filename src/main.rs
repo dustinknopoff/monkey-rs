@@ -1,6 +1,8 @@
 pub(crate) mod lexer;
 pub(crate) mod token;
 pub(crate) mod repl;
+pub(crate) mod ast;
+pub(crate) mod parser;
 use std::{env, io};
 fn main() {
     let user = env::var_os("USER").unwrap().into_string().unwrap();

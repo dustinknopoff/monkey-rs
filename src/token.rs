@@ -91,7 +91,7 @@ impl Display for TokenType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub(crate) struct Token {
     pub(crate) t_type: TokenType,
     pub(crate) literal: String,
