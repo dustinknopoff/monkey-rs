@@ -1,8 +1,8 @@
-use std::fmt::{Display, Error, Formatter};
-use std::collections::HashMap;
 use lazy_static::lazy_static;
+use std::collections::HashMap;
+use std::fmt::{Display, Error, Formatter};
 
-lazy_static!{
+lazy_static! {
     static ref KEYWORDS: HashMap<String, TokenType> = {
         let mut m = HashMap::new();
         m.insert("fn".into(), TokenType::FUNCTION);
@@ -24,7 +24,7 @@ pub(crate) fn lookup_ident(ident: String) -> TokenType {
         TokenType::IDENT
     }
 }
-
+#[allow(dead_code, non_camel_case_types)]
 #[derive(Debug, PartialEq, Clone)]
 pub(crate) enum TokenType {
     ILLEGAL,
@@ -53,7 +53,7 @@ pub(crate) enum TokenType {
     ELSE,
     RETURN,
     EQ,
-    NOT_EQ
+    NOT_EQ,
 }
 
 impl Display for TokenType {
